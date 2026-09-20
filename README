@@ -1,0 +1,237 @@
+# Regressão Linear e KNN
+
+Atividade de Machine Learning utilizando Python, Pandas, Scikit-learn e Matplotlib.
+
+## Objetivo
+
+O objetivo da atividade é utilizar dois algoritmos de Machine Learning para realizar previsões a partir de dados:
+
+* **Regressão Linear Múltipla:** prever a nota de um aluno com base na quantidade de livros lidos e na quantidade de aulas frequentadas.
+* **K-Nearest Neighbors (KNN):** prever a espécie de uma flor com base nas medidas de suas sépalas e pétalas.
+
+---
+
+## Tecnologias utilizadas
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Scikit-learn
+
+### Instalação
+
+Caso as bibliotecas ainda não estejam instaladas:
+
+```bash
+pip install pandas numpy matplotlib scikit-learn
+```
+
+---
+
+# 1. Regressão Linear
+
+## Dataset
+
+O arquivo utilizado é:
+
+```text
+data/notas.csv
+```
+
+O dataset possui as seguintes variáveis:
+
+| Variável | Descrição            |
+| -------- | -------------------- |
+| `Livros` | Quantidade de livros |
+| `Aulas`  | Quantidade de aulas  |
+| `Nota`   | Nota obtida          |
+
+As variáveis `Livros` e `Aulas` são utilizadas para prever a `Nota`.
+
+## Modelo
+
+Foi utilizado o modelo `LinearRegression`:
+
+```python
+model = LinearRegression()
+
+model.fit(booksAndClasses, grades)
+```
+
+O modelo encontra uma relação entre as variáveis de entrada e a nota.
+
+A equação utilizada pelo modelo possui a forma:
+
+```text
+Nota = coefLivros × Livros + coefAulas × Aulas + intercept
+```
+
+Onde:
+
+* `coefLivros` representa a influência da quantidade de livros.
+* `coefAulas` representa a influência da quantidade de aulas.
+* `intercept` é o valor inicial da equação.
+
+## Previsões
+
+O modelo realiza previsões para diferentes combinações de livros e aulas:
+
+```text
+Livros = 2, Aulas = 11
+Livros = 0, Aulas = 5
+Livros = 4, Aulas = 20
+Livros = 2, Aulas = 10
+Livros = 4, Aulas = 15
+```
+
+## Visualização
+
+Também foi criado um gráfico 3D contendo:
+
+* eixo X: quantidade de livros;
+* eixo Y: quantidade de aulas;
+* eixo Z: nota;
+* pontos do dataset;
+* plano de regressão.
+
+O gráfico é salvo em:
+
+```text
+graphView/LivrosAulasNotasRalation.png
+```
+
+---
+
+# 2. K-Nearest Neighbors (KNN)
+
+## Dataset
+
+O arquivo utilizado é:
+
+```text
+data/iris.csv
+```
+
+O dataset possui as seguintes variáveis:
+
+| Variável       | Descrição             |
+| -------------- | --------------------- |
+| `sepal_length` | Comprimento da sépala |
+| `sepal_width`  | Largura da sépala     |
+| `petal_length` | Comprimento da pétala |
+| `petal_width`  | Largura da pétala     |
+| `species`      | Espécie da flor       |
+
+As quatro medidas são utilizadas para prever a espécie:
+
+```text
+sepal_length
+sepal_width
+petal_length
+petal_width
+```
+
+A variável prevista é:
+
+```text
+species
+```
+
+## Modelo
+
+Foi utilizado o algoritmo KNN com 3 vizinhos:
+
+```python
+model = KNeighborsClassifier(n_neighbors=3)
+
+model.fit(flowerData, species)
+```
+
+O KNN compara uma nova flor com os exemplos existentes no dataset e utiliza os vizinhos mais próximos para determinar a espécie prevista.
+
+Neste caso:
+
+```text
+n_neighbors = 3
+```
+
+significa que o modelo considera os **3 vizinhos mais próximos**.
+
+## Previsões
+
+Foram criados novos dados de flores para testar o modelo:
+
+```text
+sepal_length
+sepal_width
+petal_length
+petal_width
+```
+
+O modelo então retorna a espécie prevista para cada uma delas.
+
+## Visualização
+
+Foi criado um gráfico 3D para visualizar parte do dataset.
+
+Os eixos utilizados são:
+
+* eixo X: `petal_length`
+* eixo Y: `petal_width`
+* eixo Z: `sepal_length`
+
+Os pontos utilizados para as previsões são destacados com um marcador `X`.
+
+O gráfico é salvo em:
+
+```text
+graphView/IrisKNN.png
+```
+
+---
+
+# Estrutura do projeto
+
+```text
+.
+├── data/
+│   ├── notas.csv
+│   └── iris.csv
+│
+├── graphView/
+│   ├── LivrosAulasNotasRalation.png
+│   └── IrisKNN.png
+│
+├── LivroAulaNotas.py
+└── IrisKNN.py
+```
+
+---
+
+# Como executar
+
+Execute os arquivos Python a partir da pasta principal do projeto:
+
+```bash
+python LivroAulaNotas.py
+```
+
+e:
+
+```bash
+python IrisKNN.py
+```
+
+Os resultados das previsões serão exibidos no terminal e os gráficos serão salvos na pasta `graphView`.
+
+---
+
+# Conclusão
+
+A atividade demonstra a utilização de dois tipos diferentes de aprendizado de máquina:
+
+* **Regressão Linear:** utilizada para prever um valor numérico, neste caso a nota.
+* **KNN:** utilizado para classificação, neste caso para identificar a espécie de uma flor.
+
+A atividade também demonstra a utilização de gráficos para visualizar os dados e os resultados dos modelos.
